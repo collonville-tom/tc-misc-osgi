@@ -1,0 +1,37 @@
+Gui-Utils Software Design Description
+
+* Base
+
+** @req SDD_BUNDLE_GUI_UTILS_010
+
+  Une classe DialogLocationControl calcul a partir des dimentsion de la frame et des dimensions de la framecourant la bonne position pour centrer cette derniere
+  
+        * @version 0.1.0
+        
+        * @track SRS_BUNDLE_GUI_UTILS_010 
+        
+        * @depend SRS_BUNDLE_UTILS_080
+        
+** @req SDD_BUNDLE_GUI_UTILS_020
+
+  La classe DialogLocationControl est exposé sous la forme d'un service osgi
+  
+        * @version 0.1.0
+        
+        * @track SRS_BUNDLE_GUI_UTILS_020 
+        
+** @req SDD_BUNDLE_GUI_UTILS_030
+
+  La classe BasicMouseAdapter est exposé sous la forme d'un service osgi
+  
+        * @version 0.1.5
+        
+        * @track SRS_BUNDLE_GUI_UTILS_030
+        
+** @req SDD_BUNDLE_GUI_UTILS_040
+
+  La classe BundleClosingWindowsAdapter est exposé sous la forme d'un service osgi 
+  
+        * @version 0.1.6
+        
+        * @track SRS_BUNDLE_GUI_UTILS_0$0  

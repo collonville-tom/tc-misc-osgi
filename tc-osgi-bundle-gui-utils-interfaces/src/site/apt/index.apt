@@ -1,0 +1,5 @@
+Introduction
+
+  Le projet gui-utils a pour but de fournir un ensemble de fonctionnalités graphique simplifiées communes a l'ensemble des projets du groupe org.tc.
+  
+  TC-OSGI definit un bundle incluant l'ensemble des objets et classes facilitant la construction d'application java swing

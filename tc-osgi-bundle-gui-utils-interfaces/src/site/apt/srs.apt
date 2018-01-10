@@ -1,0 +1,37 @@
+Gui-Utils Software Requirements Specification
+
+* Positionnement fenetre
+
+** @req SRS_BUNDLE_GUI_UTILS_010
+
+  Le bundle utils fourni un composant de placement automatique d'une fenetre dialog
+  
+        * @version 0.1.0
+        
+        * @track SRS_TC_210
+        
+** @req SRS_BUNDLE_GUI_UTILS_020
+
+  Le bundle utils fourni un composant de placement automatique d'une fenetre popup
+  
+        * @version 0.1.0
+        
+        * @track SRS_TC_210
+    
+* Controlleur IHM
+        
+** @req SRS_BUNDLE_GUI_UTILS_030
+
+  Le bundle utils fourni un composant de gestion des evenements de souris sur un JMenuItem
+  
+        * @version 0.1.5
+        
+        * @track SRS_TC_210
+        
+** @req SRS_BUNDLE_GUI_UTILS_040
+
+  Le bundle utils fourni un composant de fermeture de fernetre synchronisant l'arret du bundle graphique associé
+  
+        * @version 0.1.6
+        
+        * @track SRS_TC_210
