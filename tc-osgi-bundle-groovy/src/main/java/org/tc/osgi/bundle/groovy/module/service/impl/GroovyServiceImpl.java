@@ -52,6 +52,8 @@ public class GroovyServiceImpl implements IGroovyService {
 			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " +path,e);
 		} 
 	}
+	
+// http://mrhaki.blogspot.com/2009/11/groovy-goodness-running-groovy-scripts.html
 //    final GroovyClassLoader classLoader = new GroovyClassLoader();
 //    
 //    // Create a String with Groovy code.
