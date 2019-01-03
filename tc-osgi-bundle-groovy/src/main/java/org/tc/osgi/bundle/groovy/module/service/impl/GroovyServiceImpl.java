@@ -52,5 +52,23 @@ public class GroovyServiceImpl implements IGroovyService {
 			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " +path,e);
 		} 
 	}
-	
+//    final GroovyClassLoader classLoader = new GroovyClassLoader();
+//    
+//    // Create a String with Groovy code.
+//    final StringBuilder groovyScript = new StringBuilder();
+//    groovyScript.append("class Sample {");
+//    groovyScript.append("  String sayIt(name) { \"Groovy says: Cool $name!\" }");
+//    groovyScript.append("}");
+//     
+//    // Load string as Groovy script class.
+//    Class groovy = classLoader.parseClass(groovyScript.toString());
+//    GroovyObject groovyObj = (GroovyObject) groovy.newInstance();
+//    String output = groovyObj.invokeMethod("sayIt", new Object[] { "mrhaki" });
+//    assert "Groovy says: Cool mrhaki!".equals(output);
+//     
+//    // Load Groovy script file.
+//    groovy = classLoader.parseClass(new File("SampleScript.groovy"));
+//    groovyObj = (GroovyObject) groovy.newInstance();
+//    output = groovyObj.invokeMethod("scriptSays", new Object[] { "mrhaki", new Integer(2) });
+//    assert "Hello mrhaki, from Groovy. Hello mrhaki, from Groovy. ".equals(output);
 }
