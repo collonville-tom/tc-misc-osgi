@@ -1,0 +1,63 @@
+package org.tc.osgi.bundle.drools.rules
+  
+import org.tc.osgi.bundle.drools.module.activator.*;
+
+
+
+rule "Demande_Nom"
+    when
+        $m: Context( message contains "jour" )
+    then
+    	System.out.println("r1");
+		modify( $m ) { setMessage("") };
+		modify( $m ) { pushReponse("Quel est votre nom?") };
+		modify( $m ) { readMessage()};
+end
+
+rule "Recupere_nom"
+    when
+    	$m: Context( message matches ".*nom est .*"  )
+    then
+    	System.out.println("r2");
+		Profil p=new Profil($m.match(".*est (.*)"));
+		modify( $m ) { setProfilCourant( p ) };
+		modify( $m ) { pushReponse("Enchanté "+ p.getNom()+ ".Quel est votre age?") };
+		modify( $m ) { setMessage("") };
+		insert(p);
+		modify( $m ) { readMessage()};
+end
+
+rule "Recupere_age"
+    when
+    	$m: Context( message matches ".*age est .*")
+    	$p : Profil( nom == $m.getProfilCourant().getNom() ) 
+    then
+    	System.out.println("r3");
+		modify( $p ) { setAge(Integer.parseInt($m.match(".*est (.*)"))) };
+		modify( $m ) { pushReponse("Attendez je regarde si ca va") };
+		modify( $m ) { setMessage("") };
+		modify( $m ) { readMessage()};
+
+end
+
+rule "trop_jeune"
+    when
+    	$m : Context( reponse matches "Attendez je regarde si ca va", profilCourant.getAge() < 18  )
+    then
+    	System.out.println("r4");
+    	System.out.println("ah non, Vous etes trop jeune "+$m.getProfilCourant().getNom()+ ", aurevoir");
+    	modify( $m ) { setMessage("") };
+    	modify( $m ) { readMessage()};
+    	
+end
+
+rule "c est bon"
+    when
+    	$m : Context( reponse matches "Attendez je regarde si ca va", profilCourant.getAge() >= 18  )
+    then
+    	System.out.println("r5");
+  		System.out.println("Ok ca va " + $m.getProfilCourant().getNom());
+    	modify( $m ) { setMessage("") };
+    	modify( $m ) { readMessage()};
+    	
+end

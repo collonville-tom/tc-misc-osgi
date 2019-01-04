@@ -1,41 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.tc.osgi.bundle.drools</groupId>
-	<artifactId>tc-osgi-bundle-drools-interfaces</artifactId>
+	<groupId>org.tc.osgi.bundle.spark</groupId>
+	<artifactId>tc-osgi-bundle-spark-interfaces</artifactId>
 	<packaging>bundle</packaging>
 	<name>${project.artifactId}-${project.version}</name>
-	<description>Un bundle pour gerer des regles via le systeme expert drools</description>
+	<description>Un bundle pour gerer le server web spark</description>
 	<version>${build}${snapshot}</version>
 
 	<properties>
 		<build>0.1.0</build>
+        <utils.version>0.3.2</utils.version>
         <utils.interfaces.version>0.1.2</utils.interfaces.version>
-        <drools.runtime.version>7.4.1.Final</drools.runtime.version>
+        <groovy.interfaces.version>0.1.0</groovy.interfaces.version>
         <snapshot>-SNAPSHOT</snapshot>
     </properties>
+
+    <parent>
+        <groupId>org.tc.parent</groupId>
+        <artifactId>tc-osgi-parent</artifactId>
+        <version>0.8.1-SNAPSHOT</version>
+    </parent>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
 			<version>${utils.interfaces.version}${snapshot}</version>
-			<scope>assembly</scope>
+			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-api</artifactId>
-            <version>${drools.runtime.version}</version>
-        </dependency>
+			<groupId>org.tc.osgi.bundle.groovy</groupId>
+			<artifactId>tc-osgi-bundle-groovy-interfaces</artifactId>
+			<version>${groovy.interfaces.version}${snapshot}</version>
+			<classifier>assembly</classifier>
+		</dependency>
+       <!-- Test for eclipse -->
         <dependency>
-            <groupId>org.drools</groupId>
-            <artifactId>drools-core</artifactId>
-            <version>${drools.runtime.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.drools</groupId>
-            <artifactId>drools-compiler</artifactId>
-            <version>${drools.runtime.version}</version>
+            <groupId>org.tc.osgi.bundle.utils</groupId>
+            <artifactId>tc-osgi-bundle-utils</artifactId>
+            <version>${utils.version}${snapshot}</version>
+            <scope>test</scope>
         </dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -44,14 +49,8 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-		</dependency>    
+		</dependency>   
 	</dependencies>
-
-    <parent>
-		<groupId>org.tc.parent</groupId>
-    	<artifactId>tc-osgi-parent</artifactId>
-		<version>0.8.1-SNAPSHOT</version>
-	</parent>
 
 	<build>
 		<plugins>
@@ -79,5 +78,27 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>DOCKER</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<images>
+								<image>
+									<build>
+										<from>${docker.login}/tc-osgi-bundle-groovy:${docker.latest}</from>
+									</build>
+								</image>
+							</images>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
