@@ -17,6 +17,7 @@
 <!-- 			groupId:artifactId:type:classifier -->
 			<includes>
 				<include>*:${project.artifactId}:*:assembly</include>
+				<include>*groovy-all*</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>

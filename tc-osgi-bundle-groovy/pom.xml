@@ -13,6 +13,7 @@
         <utils.version>0.3.2</utils.version>
         <utils.interfaces.version>0.1.2</utils.interfaces.version>
         <groovy.interfaces.version>0.1.0</groovy.interfaces.version>
+        <docker.latest>latest</docker.latest>
         <snapshot>-SNAPSHOT</snapshot>
     </properties>
 
@@ -28,12 +29,14 @@
 			<artifactId>tc-osgi-bundle-groovy-interfaces</artifactId>
 			<version>${groovy.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
 			<version>${utils.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
+			<scope>compile</scope>
 		</dependency>
        <!-- Test for eclipse -->
         <dependency>
@@ -95,7 +98,7 @@
 							<images>
 								<image>
 									<build>
-										<from>${docker.login}/tc-osgi-bundle-groovy-interface:${docker.latest}</from>
+										<from>${docker.login}/tc-osgi-bundle-groovy-interfaces:${docker.latest}</from>
 									</build>
 								</image>
 							</images>

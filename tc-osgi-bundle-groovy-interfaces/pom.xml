@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.tc.osgi.bundle.groovy</groupId>
 	<artifactId>tc-osgi-bundle-groovy-interfaces</artifactId>
@@ -10,17 +9,20 @@
 
 	<properties>
 		<build>0.1.0</build>
-        <utils.interfaces.version>0.1.2</utils.interfaces.version>
-        <groovy.runtime.version>2.4.13</groovy.runtime.version>
-        <snapshot>-SNAPSHOT</snapshot>
-    </properties>
+		<utils.interfaces.version>0.1.2</utils.interfaces.version>
+		<groovy.runtime.version>2.4.13</groovy.runtime.version>
+		<manager.version>0.1.1</manager.version> <!-- use only for set docker.latest properties -->
+		<docker.latest>latest</docker.latest>
+		<snapshot>-SNAPSHOT</snapshot>
+	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
 			<version>${utils.interfaces.version}${snapshot}</version>
-			<scope>assembly</scope>
+			<classifier>assembly</classifier>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
@@ -34,12 +36,12 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-		</dependency>   
+		</dependency>
 	</dependencies>
 
-    <parent>
+	<parent>
 		<groupId>org.tc.parent</groupId>
-    	<artifactId>tc-osgi-parent</artifactId>
+		<artifactId>tc-osgi-parent</artifactId>
 		<version>0.8.1-SNAPSHOT</version>
 	</parent>
 

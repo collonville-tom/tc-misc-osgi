@@ -1,6 +1,8 @@
 package org.tc.osgi.bundle.groovy.interf.exception;
 
-public class GroovyExecutionException extends Exception {
+import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
+
+public class GroovyExecutionException extends TcOsgiException {
 
 
   

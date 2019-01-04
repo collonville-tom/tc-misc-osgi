@@ -29,7 +29,7 @@
 			<useDefaultExcludes>true</useDefaultExcludes>
 			<filtered>true</filtered>
 			<includes>
-				<include>drools.xml</include>
+				<include>groovy.xml</include>
 			</includes>
 		</fileSet>
 	</fileSets>
