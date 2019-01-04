@@ -19,6 +19,23 @@ public final class GroovyPropertyFile extends AbstractPropertyFile {
 	 */
 	public final static String BUNDLE_RACINE = "tc.osgi.bundle.groovy.";
 
+	public String groovy_extensions_libs;
+	public String groovy_extensions_scripts;
+	
+    public String getGroovyExtLibs() {
+        if (groovy_extensions_libs == null) {
+        	groovy_extensions_libs = getResourceBundle().getString(getBundleRacine() + "groovy_extensions_libs");
+        }
+        return groovy_extensions_libs;
+    }
+    
+    public String getGroovyExtScripts() {
+        if (groovy_extensions_scripts == null) {
+        	groovy_extensions_scripts = getResourceBundle().getString(getBundleRacine() + "groovy_extensions_scripts");
+        }
+        return groovy_extensions_scripts;
+    }
+	
 	/**
 	 * DefaultConfig conf.
 	 */
