@@ -17,7 +17,7 @@ import org.tc.osgi.bundle.gui.utils.interf.location.IDialogLocationControl;
 import org.tc.osgi.bundle.gui.utils.interf.module.service.IGuiUtilsService;
 import org.tc.osgi.bundle.gui.utils.location.DialogLocationControl;
 import org.tc.osgi.bundle.gui.utils.pane.ImagePane;
-import org.tc.osgi.bundle.utils.interf.module.exception.TcOsgiException;
+import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
 import org.tc.osgi.bundle.utils.interf.module.service.ILoggerUtilsService;
 
 /**

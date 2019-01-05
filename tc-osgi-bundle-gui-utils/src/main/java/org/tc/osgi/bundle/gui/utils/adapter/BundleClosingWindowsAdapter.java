@@ -4,7 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import org.osgi.framework.BundleContext;
-import org.tc.osgi.bundle.utils.interf.module.exception.TcOsgiException;
+import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
 import org.tc.osgi.bundle.utils.interf.module.service.IBundleUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.service.ILoggerUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.utils.TcOsgiProxy;
@@ -31,7 +31,7 @@ public class BundleClosingWindowsAdapter extends WindowAdapter {
 	@Override
 	public void windowClosing(final WindowEvent evt) {
 		try {
-			iBundleUtilsService.getInstance().getBundleKiller().processOnBundle(context, bName);
+			iBundleUtilsService.getInstance().getBundleKiller().processOnBundle(context, bName,null);// TODO a corriger
 		} catch (final TcOsgiException e) {
 			iLoggerUtilsService.getInstance().getLogger(BundleClosingWindowsAdapter.class).error("Probleme lors de l'arret du bundle " + bName, e);
 		}

@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 
 import org.osgi.framework.BundleContext;
 import org.tc.osgi.bundle.gui.utils.interf.location.IDialogLocationControl;
-import org.tc.osgi.bundle.utils.interf.module.exception.TcOsgiException;
+import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
+
 
 /**
  * UtilsService.java.
