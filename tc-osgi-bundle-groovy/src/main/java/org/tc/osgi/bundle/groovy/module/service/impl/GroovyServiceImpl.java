@@ -8,16 +8,12 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.codehaus.groovy.control.CompilationFailedException;
-import org.tc.osgi.bundle.groovy.interf.exception.GroovyExecutionException;
 import org.tc.osgi.bundle.groovy.interf.module.service.IGroovyService;
 import org.tc.osgi.bundle.groovy.module.service.LoggerServiceProxy;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyClassLoader;
-import groovy.lang.GroovyCodeSource;
-import groovy.lang.GroovyObject;
 import groovy.lang.GroovyShell;
-import groovy.lang.MetaClass;
 import groovy.lang.Script;
 
 /**
@@ -46,8 +42,7 @@ public class GroovyServiceImpl implements IGroovyService {
 
 	// le binding c'est le contenu des parametres a pousser dans le script
 	@Override
-	public Optional<Object> executeSpecificScript(String path, Optional<Map<String, Object>> binding)
-			throws GroovyExecutionException {
+	public Optional<Object> executeSpecificScript(String path, Optional<Map<String, Object>> binding) {
 		GroovyShell shell;
 		if (binding.isPresent()) {
 			Binding b = new Binding();
@@ -72,36 +67,32 @@ public class GroovyServiceImpl implements IGroovyService {
 			}
 
 		} catch (CompilationFailedException | IOException e) {
-			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
-					e);
+			LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+					.error("Une erreur s'est produite lors de l'excution du script groovy " + path, e);
 		}
-		throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path);
+		return Optional.empty();
 	}
 
 	@Override
-	public void executeGroovyDirectory(String path, Optional<Map<String, Object>> binding)
-			throws GroovyExecutionException {
-		try {
-			File dir = new File(path);
-			List<File> lsgroovyFile = new ArrayList<>();
-			if (dir.isDirectory()) {
-				File[] lsFile = dir.listFiles();
-				for (File lsf : lsFile) {
-					if (lsf.isFile()) {
-						lsgroovyFile.add(lsf);
-					}
+	public void executeGroovyDirectory(String path, Optional<Map<String, Object>> binding) {
+
+		File dir = new File(path);
+		List<File> lsgroovyFile = new ArrayList<>();
+		if (dir.isDirectory()) {
+			File[] lsFile = dir.listFiles();
+			for (File lsf : lsFile) {
+				if (lsf.isFile()) {
+					lsgroovyFile.add(lsf);
 				}
 			}
-			for (File f : lsgroovyFile) {
-				this.executeSpecificScript(f.getAbsolutePath(), binding);
-			}
-		} catch (CompilationFailedException e) {
-			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
-					e);
 		}
+		for (File f : lsgroovyFile) {
+			this.executeSpecificScript(f.getAbsolutePath(), binding);
+		}
+
 	}
 
-	public void loadGroovyDirectoryClassLib(String path) throws GroovyExecutionException {
+	public void loadGroovyDirectoryClassLib(String path) {
 		File dir = new File(path);
 		List<File> lsgroovyFile = new ArrayList<>();
 		if (dir.isDirectory()) {
@@ -114,13 +105,13 @@ public class GroovyServiceImpl implements IGroovyService {
 		}
 	}
 
-	public void loadGroovyClassLib(String path) throws GroovyExecutionException {
+	public void loadGroovyClassLib(String path) {
 		try {
 			LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class).debug("Chargement de la lib:" + path);
 			this.classLoader.parseClass(new File(path));
 		} catch (IOException e) {
-			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
-					e);
+			LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+			.error("Une erreur s'est produite lors du chargement de la lib groovy " + path, e);
 		}
 	}
 

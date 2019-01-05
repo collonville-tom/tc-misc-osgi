@@ -6,7 +6,6 @@ import org.osgi.framework.BundleContext;
 import org.tc.osgi.bundle.groovy.conf.GroovyPropertyFile;
 import org.tc.osgi.bundle.groovy.interf.module.service.IGroovyService;
 import org.tc.osgi.bundle.groovy.module.service.LoggerServiceProxy;
-import groovy.lang.GroovyClassLoader;
 import org.tc.osgi.bundle.groovy.module.service.PropertyServiceProxy;
 import org.tc.osgi.bundle.groovy.module.service.impl.GroovyServiceImpl;
 import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
@@ -14,6 +13,8 @@ import org.tc.osgi.bundle.utils.interf.module.service.ILoggerUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.service.IPropertyUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.utils.AbstractTcOsgiActivator;
 import org.tc.osgi.bundle.utils.interf.module.utils.TcOsgiProxy;
+
+import groovy.lang.GroovyClassLoader;
 
 /**
  * Activator.java.

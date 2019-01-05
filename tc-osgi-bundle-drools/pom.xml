@@ -10,7 +10,7 @@
 
 	<properties>
 		<build>0.1.0</build>
-        <utils.version>0.3.2</utils.version>
+        <utils.version>0.3.3</utils.version>
         <utils.interfaces.version>0.1.2</utils.interfaces.version>
         <drools.interfaces.version>0.1.0</drools.interfaces.version>
         <snapshot>-SNAPSHOT</snapshot>
@@ -19,27 +19,27 @@
     <parent>
         <groupId>org.tc.parent</groupId>
         <artifactId>tc-osgi-parent</artifactId>
-        <version>0.8.1-SNAPSHOT</version>
+        <version>0.8.1</version>
     </parent>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.drools</groupId>
 			<artifactId>tc-osgi-bundle-drools-interfaces</artifactId>
-			<version>${drools.interfaces.version}${snapshot}</version>
+			<version>${drools.interfaces.version}-SNAPSHOT</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}${snapshot}</version>
+			<version>${utils.interfaces.version}</version>
 			<classifier>assembly</classifier>
 		</dependency>
        <!-- Test for eclipse -->
         <dependency>
             <groupId>org.tc.osgi.bundle.utils</groupId>
             <artifactId>tc-osgi-bundle-utils</artifactId>
-            <version>${utils.version}${snapshot}</version>
+            <version>${utils.version}</version>
             <scope>test</scope>
         </dependency>
 		<dependency>

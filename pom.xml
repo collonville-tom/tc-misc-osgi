@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.tc.parent</groupId>
     <artifactId>tc-parent</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <modules>
@@ -19,10 +19,10 @@
     <module>tc-osgi-bundle-spark-interfaces</module>
     <module>tc-osgi-bundle-spark</module>
 
-<!--   	<module>tc-osgi-bundle-gui-utils</module> -->
-<!--   	<module>tc-osgi-bundle-gui-utils-interfaces</module> -->
-<!--     <module>tc-osgi-bundle-drools</module> -->
-<!--     <module>tc-osgi-bundle-drools-interfaces</module> -->
+  	<module>tc-osgi-bundle-gui-utils</module>
+  	<module>tc-osgi-bundle-gui-utils-interfaces</module>
+    <module>tc-osgi-bundle-drools</module>
+    <module>tc-osgi-bundle-drools-interfaces</module>
   </modules>
   
  

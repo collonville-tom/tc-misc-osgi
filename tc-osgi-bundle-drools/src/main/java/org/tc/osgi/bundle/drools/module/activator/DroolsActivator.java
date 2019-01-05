@@ -5,7 +5,7 @@ import org.tc.osgi.bundle.drools.interf.module.service.IDroolsService;
 import org.tc.osgi.bundle.drools.module.service.LoggerServiceProxy;
 import org.tc.osgi.bundle.drools.module.service.PropertyServiceProxy;
 import org.tc.osgi.bundle.drools.module.service.impl.DroolsServiceImpl;
-import org.tc.osgi.bundle.utils.interf.module.exception.TcOsgiException;
+import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
 import org.tc.osgi.bundle.utils.interf.module.service.ILoggerUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.service.IPropertyUtilsService;
 import org.tc.osgi.bundle.utils.interf.module.utils.AbstractTcOsgiActivator;

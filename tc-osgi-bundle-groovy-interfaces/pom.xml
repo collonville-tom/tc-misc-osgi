@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}${snapshot}</version>
+			<version>${utils.interfaces.version}</version>
 			<classifier>assembly</classifier>
 			<scope>compile</scope>
 		</dependency>
@@ -43,7 +43,7 @@
 	<parent>
 		<groupId>org.tc.parent</groupId>
 		<artifactId>tc-osgi-parent</artifactId>
-		<version>0.8.1-SNAPSHOT</version>
+		<version>0.8.1</version>
 	</parent>
 
 	<build>
