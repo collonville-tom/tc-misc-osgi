@@ -16,7 +16,7 @@
 			<outputDirectory>/opt/equinox-loader/bundles</outputDirectory>
 			<includes>
 				<include>*:${project.artifactId}:*:assembly</include>
-				<include>*groovy-all*</include>
+				<include>org.codehaus.groovy:groovy-all:*</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>

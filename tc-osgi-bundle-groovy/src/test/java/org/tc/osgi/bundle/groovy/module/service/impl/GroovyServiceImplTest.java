@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.tc.osgi.bundle.groovy.interf.exception.GroovyExecutionException;
+import org.tc.osgi.bundle.groovy.module.service.LoggerServiceProxy;
+import org.tc.osgi.bundle.utils.module.service.impl.LoggerUtilsServiceImpl;
 
 public class GroovyServiceImplTest {
 
@@ -12,6 +14,7 @@ public class GroovyServiceImplTest {
 		String path="src/test/resources/test.groovy";
 		
 		try {
+			LoggerServiceProxy.getInstance().setService(new LoggerUtilsServiceImpl());
 			GroovyServiceImpl.getInstance().loadGroovyClassLib(path);
 			for(Class c:GroovyServiceImpl.getInstance().getClassesFrom(MonInterface.class))
 			{

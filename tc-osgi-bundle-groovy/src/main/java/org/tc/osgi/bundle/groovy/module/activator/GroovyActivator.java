@@ -1,8 +1,12 @@
 package org.tc.osgi.bundle.groovy.module.activator;
 
+import java.util.Optional;
+
 import org.osgi.framework.BundleContext;
+import org.tc.osgi.bundle.groovy.conf.GroovyPropertyFile;
 import org.tc.osgi.bundle.groovy.interf.module.service.IGroovyService;
 import org.tc.osgi.bundle.groovy.module.service.LoggerServiceProxy;
+import groovy.lang.GroovyClassLoader;
 import org.tc.osgi.bundle.groovy.module.service.PropertyServiceProxy;
 import org.tc.osgi.bundle.groovy.module.service.impl.GroovyServiceImpl;
 import org.tc.osgi.bundle.utils.interf.exception.TcOsgiException;
@@ -37,7 +41,7 @@ public class GroovyActivator extends AbstractTcOsgiActivator {
 
 	@Override
 	protected void initServices(BundleContext context) throws TcOsgiException {
-		this.getIBundleUtilsService().getInstance().registerService(IGroovyService.class, new GroovyServiceImpl(), context, this);
+		this.getIBundleUtilsService().getInstance().registerService(IGroovyService.class, GroovyServiceImpl.getInstance(), context, this);
 	}
 
 	@Override
@@ -59,13 +63,15 @@ public class GroovyActivator extends AbstractTcOsgiActivator {
 
 	@Override
 	protected void beforeStop(BundleContext context) throws TcOsgiException {
+		((GroovyClassLoader) GroovyServiceImpl.getInstance().getGroovyClassLoader()).clearCache();;
 	}
 
 	@Override
 	protected void afterStart(BundleContext context) throws TcOsgiException {
-		// TODO : ajouter un repertoire de script a executer par defaut
-		// c'est la que le manager deposera ses scripts d'init a destination de spark, si les deux services sont la, alors tant mieux
-		// TODO : ajouter un repertoire de lib groovy a charger par defaut
+		LoggerServiceProxy.getInstance().getLogger(GroovyActivator.class).debug("Chargement des libs groovy par default:"+GroovyPropertyFile.getInstance().getGroovyExtLibs());
+		GroovyServiceImpl.getInstance().loadGroovyDirectoryClassLib(GroovyPropertyFile.getInstance().getGroovyExtLibs());
+		LoggerServiceProxy.getInstance().getLogger(GroovyActivator.class).debug("Chargement des scripts groovy par default:"+GroovyPropertyFile.getInstance().getGroovyExtScripts());
+		GroovyServiceImpl.getInstance().executeGroovyDirectory(GroovyPropertyFile.getInstance().getGroovyExtScripts(),Optional.empty());
 	}
 
 	@Override

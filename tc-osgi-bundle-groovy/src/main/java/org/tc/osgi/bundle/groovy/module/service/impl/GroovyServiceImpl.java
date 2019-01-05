@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.tc.osgi.bundle.groovy.interf.exception.GroovyExecutionException;
 import org.tc.osgi.bundle.groovy.interf.module.service.IGroovyService;
+import org.tc.osgi.bundle.groovy.module.service.LoggerServiceProxy;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyClassLoader;
@@ -39,6 +40,10 @@ public class GroovyServiceImpl implements IGroovyService {
 		return GroovyServiceImpl.instance;
 	}
 
+	private GroovyServiceImpl() {
+
+	}
+
 	// le binding c'est le contenu des parametres a pousser dans le script
 	@Override
 	public Optional<Object> executeSpecificScript(String path, Optional<Map<String, Object>> binding)
@@ -46,37 +51,37 @@ public class GroovyServiceImpl implements IGroovyService {
 		GroovyShell shell;
 		if (binding.isPresent()) {
 			Binding b = new Binding();
-			for (String s : binding.get().keySet())
-				b.setProperty(s, binding.get().get(s));
+			for (String s : binding.get().keySet()) {
+				Object v = binding.get().get(s);
+				StringBuilder builder = new StringBuilder("Gestion du paramtre de script:");
+				builder.append(s).append(",").append(v);
+				LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class).debug(builder.toString());
+				b.setProperty(s, v);
+			}
 			shell = new GroovyShell(b);
 		} else {
 			shell = new GroovyShell();
 		}
 		try {
-			// Chargement du script groovy
-			Script s = shell.parse(new File(path));
-			// Exécution du script
-			return Optional.ofNullable(s.run());
+			File f = new File(path);
+			if (f.isFile()) {
+				Script s = shell.parse(f);
+				LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+						.debug("Execution du script:" + f.getName());
+				return Optional.ofNullable(s.run());
+			}
+
 		} catch (CompilationFailedException | IOException e) {
 			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
 					e);
 		}
+		throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path);
 	}
 
 	@Override
 	public void executeGroovyDirectory(String path, Optional<Map<String, Object>> binding)
 			throws GroovyExecutionException {
-		GroovyShell shell;
-		if (binding.isPresent()) {
-			Binding b = new Binding();
-			for (String s : binding.get().keySet())
-				b.setProperty(s, binding.get().get(s));
-			shell = new GroovyShell(b);
-		} else {
-			shell = new GroovyShell();
-		}
 		try {
-
 			File dir = new File(path);
 			List<File> lsgroovyFile = new ArrayList<>();
 			if (dir.isDirectory()) {
@@ -88,15 +93,14 @@ public class GroovyServiceImpl implements IGroovyService {
 				}
 			}
 			for (File f : lsgroovyFile) {
-				Script s = shell.parse(new File(path));
-				s.run();
+				this.executeSpecificScript(f.getAbsolutePath(), binding);
 			}
-		} catch (CompilationFailedException | IOException e) {
+		} catch (CompilationFailedException e) {
 			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
 					e);
 		}
 	}
-	
+
 	public void loadGroovyDirectoryClassLib(String path) throws GroovyExecutionException {
 		File dir = new File(path);
 		List<File> lsgroovyFile = new ArrayList<>();
@@ -109,35 +113,40 @@ public class GroovyServiceImpl implements IGroovyService {
 			}
 		}
 	}
-	
-	
+
 	public void loadGroovyClassLib(String path) throws GroovyExecutionException {
 		try {
+			LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class).debug("Chargement de la lib:" + path);
 			this.classLoader.parseClass(new File(path));
-		} catch (IOException  e) {
-			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,e);
+		} catch (IOException e) {
+			throw new GroovyExecutionException("Une erreur s'est produite lors de l'excution du script groovy " + path,
+					e);
 		}
 	}
 
 	@Override
 	public List<Class> getClassesFrom(Class type) {
-		Class[] classes=this.classLoader.getLoadedClasses();
-		List<Class> result=new ArrayList<>();
-		for(Class c:classes)
-		{
-			if(c.getSuperclass().equals(type))
-			{
+		LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+				.debug("Finding classes derived of:" + type.getName());
+		Class[] classes = this.classLoader.getLoadedClasses();
+		List<Class> result = new ArrayList<>();
+		for (Class c : classes) {
+			if (c.getSuperclass().equals(type)) {
+				LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+						.debug("Classes Found:" + c.getName());
 				result.add(c);
 			}
-			for(Class ci:c.getInterfaces())
-			if(ci.equals(type))
-			{
-				result.add(c);
+			for (Class ci : c.getInterfaces()) {
+				if (ci.equals(type)) {
+					LoggerServiceProxy.getInstance().getLogger(GroovyServiceImpl.class)
+							.debug("Classes Found:" + c.getName());
+					result.add(c);
+				}
 			}
 		}
 		return result;
 	}
-	
+
 	@Override
 	public ClassLoader getGroovyClassLoader() {
 		return this.classLoader;
