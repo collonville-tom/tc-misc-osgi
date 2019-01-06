@@ -4,6 +4,11 @@ import org.apache.log4j.Logger;
 import org.tc.osgi.bundle.utils.interf.logger.ILoggerGestionnary;
 import org.tc.osgi.bundle.utils.interf.module.service.ILoggerUtilsService;
 
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import spark.Spark;
+
 /**
  * UtilsServiceProxy.java.
  * @author collonville thomas
@@ -37,7 +42,7 @@ public class LoggerServiceProxy implements ILoggerUtilsService {
 	 * UtilsServiceProxy constructor.
 	 */
 	private LoggerServiceProxy() {
-
+		
 	}
 
 	/**

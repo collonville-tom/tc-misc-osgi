@@ -1,9 +1,6 @@
 package org.tc.osgi.bundle.spark.module.service.impl;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Optional;
 
 import org.tc.osgi.bundle.spark.interf.module.service.ISparkService;
 

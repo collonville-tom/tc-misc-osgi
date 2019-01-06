@@ -103,7 +103,7 @@
 							<images>
 								<image>
 									<build>
-										<from>${docker.login}/tc-osgi-bundle-groovy:${docker.latest}</from>
+										<from>${docker.login}/tc-osgi-bundle-spark-interfaces:${docker.latest}</from>
 										<ports>
 											<port>${manager.rest.port}</port>
 										</ports>
