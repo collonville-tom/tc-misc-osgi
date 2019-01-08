@@ -13,6 +13,7 @@
         <utils.version>0.3.3</utils.version>
         <utils.interfaces.version>0.1.2</utils.interfaces.version>
         <groovy.interfaces.version>0.1.0</groovy.interfaces.version>
+        <manager.version>0.1.1</manager.version>
         <docker.latest>latest</docker.latest>
         <snapshot>-SNAPSHOT</snapshot>
     </properties>
@@ -28,6 +29,13 @@
 			<groupId>org.tc.osgi.bundle.groovy</groupId>
 			<artifactId>tc-osgi-bundle-groovy-interfaces</artifactId>
 			<version>${groovy.interfaces.version}-SNAPSHOT</version>
+			<classifier>assembly</classifier>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.tc.osgi.bundle.manager</groupId>
+			<artifactId>tc-osgi-bundle-manager</artifactId>
+			<version>${manager.version}-SNAPSHOT</version>
 			<classifier>assembly</classifier>
 			<scope>compile</scope>
 		</dependency>
@@ -72,6 +80,7 @@
 				<configuration>
 					<instructions>
 						<Bundle-Activator>org.tc.osgi.bundle.groovy.module.activator.GroovyActivator</Bundle-Activator>
+						<Import-Package>org.tc.osgi.bundle.manager.jmx,org.tc.osgi.bundle.manager.core.external,org.tc.osgi.bundle.manager.core.internal,*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
