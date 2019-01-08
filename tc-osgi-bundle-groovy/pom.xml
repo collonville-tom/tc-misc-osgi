@@ -80,7 +80,7 @@
 				<configuration>
 					<instructions>
 						<Bundle-Activator>org.tc.osgi.bundle.groovy.module.activator.GroovyActivator</Bundle-Activator>
-						<Import-Package>org.tc.osgi.bundle.manager.jmx,org.tc.osgi.bundle.manager.core.external,org.tc.osgi.bundle.manager.core.internal,*</Import-Package>
+						<Import-Package>org.tc.osgi.bundle.manager.jmx,org.tc.osgi.bundle.manager.mbean,*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
