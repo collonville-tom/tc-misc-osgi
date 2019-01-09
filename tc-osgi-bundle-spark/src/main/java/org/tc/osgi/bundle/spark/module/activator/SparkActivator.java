@@ -84,11 +84,11 @@ public class SparkActivator extends AbstractTcOsgiActivator {
 	protected void afterStart(BundleContext context) throws TcOsgiException {
 		
 		// peut etre que l'on peut pas faire comme ca... 
-		Spark.port(Integer.parseInt(this.getRestPort()));
+		// Spark.port(Integer.parseInt(this.getRestPort()));
 		// il faut peut etre donner la capacité a en gerer plusieur instance de SPark.... donc iici ca serai celui par defaut?
 		// peut on meme en faire un multi instance?
 		// probablement qu'il faudra by passer la classe static
-		Spark.staticFiles.externalLocation(SparkPropertyFile.getInstance().getWorkDirectory());
+		//Spark.staticFiles.externalLocation(SparkPropertyFile.getInstance().getWorkDirectory());
 	}
 
 	@Override
