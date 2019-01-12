@@ -9,7 +9,7 @@
 
 	<properties>
 		<build>0.1.0</build>
-		<utils.interfaces.version>0.1.2</utils.interfaces.version>
+		<utils.interfaces.version>0.1.3</utils.interfaces.version>
 		<groovy.runtime.version>2.4.13</groovy.runtime.version>
 		<manager.version>0.1.1</manager.version> <!-- use only for set docker.latest properties -->
 		<docker.latest>latest</docker.latest>
@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}</version>
+			<version>${utils.interfaces.version}-SNAPSHOT</version>
 			<classifier>assembly</classifier>
 			<scope>compile</scope>
 		</dependency>

@@ -10,7 +10,7 @@
 
 	<properties>
 		<build>0.1.0</build>
-        <utils.interfaces.version>0.1.2</utils.interfaces.version>
+        <utils.interfaces.version>0.1.3</utils.interfaces.version>
         <drools.runtime.version>7.4.1.Final</drools.runtime.version>
         <snapshot>-SNAPSHOT</snapshot>
     </properties>

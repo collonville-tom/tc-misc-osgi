@@ -9,8 +9,8 @@
 
 	<properties>
 		<build>0.1.0</build>
-		<utils.version>0.3.3</utils.version>
-		<utils.interfaces.version>0.1.2</utils.interfaces.version>
+		<utils.version>0.3.4</utils.version>
+		<utils.interfaces.version>0.1.3</utils.interfaces.version>
 		<groovy.interfaces.version>0.1.0</groovy.interfaces.version>
 		<spark.interfaces.version>0.1.0</spark.interfaces.version>
 		<manager.rest.port>4567</manager.rest.port>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}</version>
+			<version>${utils.interfaces.version}-SNAPSHOT</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils</artifactId>
-			<version>${utils.version}</version>
+			<version>${utils.version}-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
