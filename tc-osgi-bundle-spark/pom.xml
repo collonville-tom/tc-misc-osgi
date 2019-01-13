@@ -14,8 +14,8 @@
 		<groovy.interfaces.version>0.1.0</groovy.interfaces.version>
 		<spark.interfaces.version>0.1.0</spark.interfaces.version>
 		<manager.rest.port>4567</manager.rest.port>
-		<snapshot>-SNAPSHOT</snapshot>
-		<docker.latest>latest</docker.latest>
+		<snapshot></snapshot>
+		<docker.latest>0.1.0</docker.latest>
 	</properties>
 
 	<parent>
@@ -28,26 +28,26 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}-SNAPSHOT</version>
+			<version>${utils.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.groovy</groupId>
 			<artifactId>tc-osgi-bundle-groovy-interfaces</artifactId>
-			<version>${groovy.interfaces.version}-SNAPSHOT</version>
+			<version>${groovy.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.spark</groupId>
 			<artifactId>tc-osgi-bundle-spark-interfaces</artifactId>
-			<version>${spark.interfaces.version}-SNAPSHOT</version>
+			<version>${spark.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<!-- Test for eclipse -->
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils</artifactId>
-			<version>${utils.version}-SNAPSHOT</version>
+			<version>${utils.version}${snapshot}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

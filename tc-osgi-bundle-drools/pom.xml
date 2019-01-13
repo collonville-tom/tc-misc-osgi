@@ -26,20 +26,20 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.drools</groupId>
 			<artifactId>tc-osgi-bundle-drools-interfaces</artifactId>
-			<version>${drools.interfaces.version}-SNAPSHOT</version>
+			<version>${drools.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}-SNAPSHOT</version>
+			<version>${utils.interfaces.version}${snapshot}</version>
 			<classifier>assembly</classifier>
 		</dependency>
        <!-- Test for eclipse -->
         <dependency>
             <groupId>org.tc.osgi.bundle.utils</groupId>
             <artifactId>tc-osgi-bundle-utils</artifactId>
-            <version>${utils.version}-SNAPSHOT</version>
+            <version>${utils.version}${snapshot}</version>
             <scope>test</scope>
         </dependency>
 		<dependency>
