@@ -32,14 +32,14 @@
 		<dependency>
 			<groupId>org.tc.osgi.bundle.utils</groupId>
 			<artifactId>tc-osgi-bundle-utils-interfaces</artifactId>
-			<version>${utils.interfaces.version}${snapshot}</version>
+			<version>${utils.interfaces.version}</version>
 			<classifier>assembly</classifier>
 		</dependency>
        <!-- Test for eclipse -->
         <dependency>
             <groupId>org.tc.osgi.bundle.utils</groupId>
             <artifactId>tc-osgi-bundle-utils</artifactId>
-            <version>${utils.version}${snapshot}</version>
+            <version>${utils.version}</version>
             <scope>test</scope>
         </dependency>
 		<dependency>
