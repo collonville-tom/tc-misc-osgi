@@ -27,7 +27,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-
 	<servers>
 		<server>
 			<username>external</username>
@@ -42,7 +41,63 @@
 		<profile>
 			<id>compiler</id>
 			<properties>
-				<JAVA_1_8_HOME>${JAVA_HOME}</JAVA_1_8_HOME>
+				<siteweb-url>http://localhost/osgi</siteweb-url>
+				<jenkins-url>http://localhost/jenkins</jenkins-url>
+				<local-siteweb-url>file://localhost/var/www/osgi/</local-siteweb-url>
+				<JAVA_1_7_HOME>C:\Program Files\Java\jdk1.7.0_67</JAVA_1_7_HOME>
+				<JAVA_1_8_HOME>C:\Program Files\Java\jdk1.8.0_181</JAVA_1_8_HOME>
+				<JAVA_1_9_HOME>C:\Program Files\Java\jdk-9</JAVA_1_9_HOME>
+
+				<!--Cette variable permet de definir quel version java utiliser pour 
+					le build -->
+				<SETTINGS_JAVA_HOME>C:\Program Files\Java\jdk-11</SETTINGS_JAVA_HOME>
+
+				<!-- Liste des versions des composants en cours de developpement Pour 
+					cette section on dissocie version et attribut SNAPSHOT pour la contrainte 
+					de construction des deb -->
+				<docker.login>collonvtom</docker.login>
+				<jmx.port>7001</jmx.port>
+				<manager.rest.port>4567</manager.rest.port>
+				<!-- Version des dependances amont -->
+				
+
+				<tc-osgi-bundle-utils-interfaces.version>0.2.0</tc-osgi-bundle-utils-interfaces.version>
+				<tc-osgi-bundle-utils-interfaces.snapshot>-SNAPSHOT</tc-osgi-bundle-utils-interfaces.snapshot>
+
+				<tc-osgi-bundle-utils.version>0.4.0</tc-osgi-bundle-utils.version>
+				<tc-osgi-bundle-utils.snapshot>-SNAPSHOT</tc-osgi-bundle-utils.snapshot>
+				
+				<tc-osgi-bundle-manager.version>0.2.0</tc-osgi-bundle-manager.version>
+				<tc-osgi-bundle-manager.snapshot>-SNAPSHOT</tc-osgi-bundle-manager.snapshot>
+				<tc-osgi-bundle-manager.latest>latest</tc-osgi-bundle-manager.latest>
+				<!-- Version des composants du depots -->
+
+				<tc-osgi-bundle-groovy-interfaces.version>0.2.0</tc-osgi-bundle-groovy-interfaces.version>
+				<tc-osgi-bundle-groovy-interfaces.snapshot>-SNAPSHOT</tc-osgi-bundle-groovy-interfaces.snapshot>
+				<tc-osgi-bundle-groovy-interfaces.latest>latest</tc-osgi-bundle-groovy-interfaces.latest>
+
+				<tc-osgi-bundle-groovy.version>0.2.0</tc-osgi-bundle-groovy.version>
+				<tc-osgi-bundle-groovy.snapshot>-SNAPSHOT</tc-osgi-bundle-groovy.snapshot>
+				<tc-osgi-bundle-groovy.latest>latest</tc-osgi-bundle-groovy.latest>
+
+				<tc-osgi-bundle-spark-interfaces.version>0.2.0</tc-osgi-bundle-spark-interfaces.version>
+				<tc-osgi-bundle-spark-interfaces.snapshot>-SNAPSHOT</tc-osgi-bundle-spark-interfaces.snapshot>
+				<tc-osgi-bundle-spark-interfaces.latest>latest</tc-osgi-bundle-spark-interfaces.latest>
+
+				<tc-osgi-bundle-spark.version>0.2.0</tc-osgi-bundle-spark.version>
+				<tc-osgi-bundle-spark.snapshot>-SNAPSHOT</tc-osgi-bundle-spark.snapshot>
+				
+				<tc-osgi-bundle-gui-utils-interfaces.version>0.2.0</tc-osgi-bundle-gui-utils-interfaces.version>
+				<tc-osgi-bundle-gui-utils-interfaces.snapshot>-SNAPSHOT</tc-osgi-bundle-gui-utils-interfaces.snapshot>
+				
+				<tc-osgi-bundle-gui-utils.version>0.2.0</tc-osgi-bundle-gui-utils.version>
+				<tc-osgi-bundle-gui-utils.snapshot>-SNAPSHOT</tc-osgi-bundle-gui-utils.snapshot>
+				
+				<tc-osgi-bundle-drools-interfaces.version>0.2.0</tc-osgi-bundle-drools-interfaces.version>
+				<tc-osgi-bundle-drools-interfaces.snapshot>-SNAPSHOT</tc-osgi-bundle-drools-interfaces.snapshot>
+				
+				<tc-osgi-bundle-drools.version>0.2.0</tc-osgi-bundle-drools.version>
+				<tc-osgi-bundle-drools.snapshot>-SNAPSHOT</tc-osgi-bundle-drools.snapshot>
 			</properties>
 		</profile>
 
@@ -50,27 +105,22 @@
 		<profile>
 			<id>external</id>
 			<repositories>
-      				<repository>
-              	  <id>clojars</id>
-              	  <name>clojars</name>
-               	 <url>http://clojars.org/repo/</url>
-           		 </repository>
-
-            	<repository>
-              	  <id>central</id>
-              	  <name>central</name>
-               	 <url>http://repo1.maven.org/maven2</url>
-           		 </repository>
-            	<repository>
-              	  <id>mvnrepository</id>
-              	  <name>mvnrepository</name>
-               	 <url>http://www.mvnrepository.com</url>
-           		 </repository>
-       		 </repositories>
+				<repository>
+					<id>central</id>
+					<name>central</name>
+					<url>http://repo1.maven.org/maven2</url>
+				</repository>
+				<repository>
+					<id>mvnrepository</id>
+					<name>mvnrepository</name>
+					<url>http://www.mvnrepository.com</url>
+				</repository>
+			</repositories>
 		</profile>
 
 
-		<!--quand on a besoin d'une release, normalement tout le temps sauf pour les composant interne au build-->
+		<!--quand on a besoin d'une release, normalement tout le temps sauf pour 
+			les composants interne au build -->
 		<profile>
 			<id>release</id>
 			<repositories>
@@ -101,7 +151,9 @@
 			</pluginRepositories>
 		</profile>
 
-		<!--pour la livraison --> 
+		<!-- doit etre activé pour la livraison d'une version release ne pas confondre 
+			avec le profil release qui permet d'utiliser ces dernieres -->
+		<!-- mvn clean deploy -->
 		<profile>
 			<id>artifactory</id>
 			<properties>
@@ -135,6 +187,21 @@
 			</pluginRepositories>
 		</profile>
 
+		<!-- doit etre activé pour la livraison d'une version release -->
+		<!-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -->
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.jdbc.url>jdbc:postgresql://localhost/sonar</sonar.jdbc.url>
+				<sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
+				<sonar.jdbc.username>sonar</sonar.jdbc.username>
+				<sonar.jdbc.password>sonar</sonar.jdbc.password>
+				<sonar.host.url>http://localhost:9000/sonar</sonar.host.url>
+			</properties>
+		</profile>
 
 	</profiles>
 
@@ -142,7 +209,7 @@
 	<activeProfiles>
 		<activeProfile>external</activeProfile>
 		<activeProfile>release</activeProfile>
-		<activeProfile>dependancies</activeProfile>
 		<activeProfile>compiler</activeProfile>
 	</activeProfiles>
+
 </settings>
