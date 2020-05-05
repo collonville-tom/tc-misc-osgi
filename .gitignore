@@ -7,4 +7,6 @@ srs.apt~
 /bundles
 /bin
 /target
+/.idea
+*.iml
 

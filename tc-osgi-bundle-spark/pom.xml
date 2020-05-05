@@ -9,19 +9,19 @@
 
 	<properties>
 		<build>0.1.0</build>
-		<utils.version>0.3.4</utils.version>
-		<utils.interfaces.version>0.1.3</utils.interfaces.version>
+		<utils.version>0.4.0</utils.version>
+		<utils.interfaces.version>0.2.0</utils.interfaces.version>
 		<groovy.interfaces.version>0.1.0</groovy.interfaces.version>
 		<spark.interfaces.version>0.1.0</spark.interfaces.version>
 		<manager.rest.port>4567</manager.rest.port>
-		<snapshot></snapshot>
-		<docker.latest>0.1.0</docker.latest>
+		<snapshot>-SNAPSHOT</snapshot>
+		<docker.latest>latest</docker.latest>
 	</properties>
 
 	<parent>
 		<groupId>org.tc.parent</groupId>
 		<artifactId>tc-osgi-parent</artifactId>
-		<version>0.8.1</version>
+		<version>0.9.1-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -51,8 +51,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
